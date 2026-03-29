@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pesan Semesta Untukmu</title>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#141e30,#243b55);
+height:100vh;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+#particles-js{
+position:absolute;
+width:100%;
+height:100%;
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:2;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.cover{
+animation:fadeIn 2s;
+}
+
+.card{
+display:none;
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+width:380px;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+animation:fadeUp 1.5s;
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:10px;
+width:80%;
+margin-top:10px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ffd166;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+}
+
+#hasil{
+margin-top:20px;
+font-size:20px;
+line-height:1.6;
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px)}
+to{opacity:1; transform:translateY(0)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5a8a6c9c65.mp3">
+</audio>
+
+<div class="container">
+
+<div class="cover" id="cover">
+<h1>✨ Pesan Semesta ✨</h1>
+<p>Seseorang mengirimkan pesan semangat untukmu hari ini</p>
+<button onclick="buka()">Buka Pesan</button>
+</div>
+
+<div class="card" id="card">
+
+<h2>Masukkan Namamu</h2>
+
+<input id="nama" placeholder="Nama kamu">
+
+<br>
+
+<button onclick="generate()">Lihat Pesan</button>
+
+<div id="hasil"></div>
+
+</div>
+
+</div>
+
+<script>
+
+particlesJS("particles-js",{
+particles:{
+number:{value:60},
+size:{value:3},
+move:{speed:1},
+line_linked:{enable:true}
+}
+})
+
+const motivasi=[
+
+"Hal besar dimulai dari langkah kecil hari ini",
+
+"Jangan menyerah, masa depanmu sedang menunggu",
+
+"Kesempatan terbaik sering datang setelah kesulitan",
+
+"Percayalah pada dirimu sendiri",
+
+"Setiap hari adalah kesempatan untuk berubah",
+
+"Kesuksesan adalah keberanian mencoba lagi",
+
+"Perjalananmu masih panjang, teruslah melangkah",
+
+"Semesta selalu mendukung orang yang tidak menyerah",
+
+"Keajaiban sering terjadi pada mereka yang sabar",
+
+"Langkah kecil hari ini akan menjadi cerita besar nanti"
+
+]
+
+function buka(){
+
+document.getElementById("cover").style.display="none"
+document.getElementById("card").style.display="block"
+
+}
+
+function generate(){
+
+let nama=document.getElementById("nama").value
+
+if(nama==""){
+alert("Masukkan nama dulu")
+return
+}
+
+let random=motivasi[Math.floor(Math.random()*motivasi.length)]
+
+document.getElementById("hasil").innerHTML=
+
+"✨ Halo <b>"+nama+"</b><br><br>"+random+
+"<br><br><button onclick='share()'>📤 Share ke WhatsApp</button>"
+
+}
+
+function share(){
+
+let text=encodeURIComponent("Coba lihat pesan semesta untukmu di sini: "+window.location.href)
+
+window.open("https://wa.me/?text="+text)
+
+}
+
+</script>
+
+</body>
+</html>
