@@ -1,18 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pesan Semesta Untukmu</title>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
 
 body{
 margin:0;
-font-family: 'Segoe UI', sans-serif;
-background: linear-gradient(135deg,#141e30,#243b55);
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#141e30,#243b55);
 height:100vh;
 color:white;
 text-align:center;
@@ -34,14 +39,19 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+padding:20px;
+}
+
+.page{
+display:none;
+animation:fadeUp 1s;
 }
 
 .cover{
-animation:fadeIn 2s;
+display:block;
 }
 
 .card{
-display:none;
 background:rgba(255,255,255,0.1);
 padding:30px;
 border-radius:20px;
@@ -49,14 +59,13 @@ backdrop-filter:blur(10px);
 width:90%;
 max-width:380px;
 box-shadow:0 15px 40px rgba(0,0,0,0.4);
-animation:fadeUp 1.5s;
 }
 
-input{
+select,input{
 padding:12px;
 border:none;
 border-radius:10px;
-width:80%;
+width:100%;
 margin-top:10px;
 }
 
@@ -71,58 +80,108 @@ cursor:pointer;
 font-size:15px;
 }
 
-#hasil{
-margin-top:20px;
-font-size:20px;
-line-height:1.6;
+.cardMotivasi{
+
+width:350px;
+max-width:90%;
+padding:40px;
+border-radius:20px;
+color:white;
+margin:auto;
+text-align:center;
+font-size:22px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+background-size:cover;
+background-position:center;
+
 }
 
-@keyframes fadeIn{
-from{opacity:0}
-to{opacity:1}
+.overlay{
+background:rgba(0,0,0,0.45);
+padding:30px;
+border-radius:20px;
+border-radius:20px;
 }
 
 @keyframes fadeUp{
-from{opacity:0; transform:translateY(30px)}
-to{opacity:1; transform:translateY(0)}
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div id="particles-js"></div>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5a8a6c9c65.mp3">
-</audio>
-
 <div class="container">
 
-<div class="cover" id="cover">
+<!-- PAGE 1 -->
+
+<div id="page1" class="page cover">
+
 <h1>✨ Pesan Semesta ✨</h1>
-<p>Seseorang mengirimkan pesan semangat untukmu hari ini</p>
-<button onclick="buka()">Buka Pesan</button>
+
+<p>Seseorang mengirimkan pesan untukmu hari ini</p>
+
+<button onclick="nextPage(2)">Buka Pesan</button>
+
 </div>
 
-<div class="card" id="card">
+<!-- PAGE 2 -->
 
-<h2>Masukkan Namamu</h2>
+<div id="page2" class="page">
+
+<div class="card">
+
+<h2>Pilih Tema Pesan</h2>
+
+<select id="kategori">
+
+<option value="semangat">Energi & Semangat</option>
+
+<option value="hidup">Makna Kehidupan</option>
+
+<option value="sukses">Kesuksesan</option>
+
+</select>
 
 <input id="nama" placeholder="Nama kamu">
 
-<br>
-
 <button onclick="generate()">Lihat Pesan</button>
 
-<div id="hasil"></div>
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div id="page3" class="page">
+
+<div id="cardMotivasi" class="cardMotivasi">
+
+<div class="overlay">
+
+<h2 id="namaCard"></h2>
+
+<p id="kataCard"></p>
+
+</div>
+
+</div>
+
+<button onclick="downloadGambar()">📸 Simpan Gambar</button>
 
 </div>
 
 </div>
 
 <script>
+
+/* PARTICLES BACKGROUND */
 
 particlesJS("particles-js",{
 particles:{
@@ -133,60 +192,141 @@ line_linked:{enable:true}
 }
 })
 
-const motivasi=[
+let sudahGenerate=false
 
-"Hal besar dimulai dari langkah kecil hari ini",
+/* TEMPLATE AI STYLE */
 
-"Jangan menyerah, masa depanmu sedang menunggu",
+const template=[
 
-"Kesempatan terbaik sering datang setelah kesulitan",
-
-"Percayalah pada dirimu sendiri",
-
-"Setiap hari adalah kesempatan untuk berubah",
-
-"Kesuksesan adalah keberanian mencoba lagi",
-
-"Perjalananmu masih panjang, teruslah melangkah",
-
-"Semesta selalu mendukung orang yang tidak menyerah",
-
-"Keajaiban sering terjadi pada mereka yang sabar",
-
-"Langkah kecil hari ini akan menjadi cerita besar nanti"
+"{nama}, semesta ingin kamu tahu bahwa {pesan}",
+"Hari ini {nama}, ingatlah bahwa {pesan}",
+"Pesan kecil untukmu {nama}: {pesan}",
+"{nama}, mungkin hari ini berat, tapi {pesan}"
 
 ]
 
-function buka(){
+const isiPesan={
 
-document.getElementById("cover").style.display="none"
-document.getElementById("card").style.display="block"
+semangat:[
+
+"setiap langkah kecilmu sedang membangun masa depan",
+"kamu lebih kuat dari keraguan yang kamu rasakan",
+"bahkan hari yang sulit sedang membentuk versi terbaikmu",
+"keberanian kecil hari ini akan menjadi kemenangan besar"
+
+],
+
+hidup:[
+
+"hidup selalu punya cara indah untuk mengajarkan kesabaran",
+"setiap perjalanan membawa makna yang tidak selalu langsung terlihat",
+"ketenangan datang pada mereka yang percaya pada proses",
+"semesta bekerja dengan cara yang tidak selalu kita pahami"
+
+],
+
+sukses:[
+
+"kesuksesan adalah akumulasi dari keputusan kecil setiap hari",
+"orang yang tidak berhenti mencoba selalu lebih dekat dengan kemenangan",
+"ketekunan hari ini adalah fondasi kesuksesan esok",
+"mimpi besar dimulai dari keberanian mengambil langkah pertama"
+
+]
 
 }
+
+/* BACKGROUND PER TEMA */
+
+const backgroundTema={
+
+semangat:"https://source.unsplash.com/800x600/?sunrise,energy",
+hidup:"https://source.unsplash.com/800x600/?nature,life",
+sukses:"https://source.unsplash.com/800x600/?success,skyline"
+
+}
+
+/* PAGE NAVIGATION */
+
+function nextPage(num){
+
+document.querySelectorAll(".page").forEach(p=>p.style.display="none")
+document.getElementById("page"+num).style.display="block"
+
+}
+
+/* GENERATE MOTIVASI */
 
 function generate(){
 
+if(sudahGenerate){
+
+alert("Pesan sudah dibuka. Refresh halaman untuk mencoba lagi.")
+return
+
+}
+
 let nama=document.getElementById("nama").value
+let kategori=document.getElementById("kategori").value
 
 if(nama==""){
+
 alert("Masukkan nama dulu")
 return
-}
-
-let random=motivasi[Math.floor(Math.random()*motivasi.length)]
-
-document.getElementById("hasil").innerHTML=
-
-"✨ Halo <b>"+nama+"</b><br><br>"+random+
-"<br><br><button onclick='share()'>📤 Share ke WhatsApp</button>"
 
 }
 
-function share(){
+let t=template[Math.floor(Math.random()*template.length)]
+let p=isiPesan[kategori][Math.floor(Math.random()*isiPesan[kategori].length)]
 
-let text=encodeURIComponent("Coba lihat pesan semesta untukmu di sini: "+window.location.href)
+let kalimat=t.replace("{nama}",nama).replace("{pesan}",p)
 
-window.open("https://wa.me/?text="+text)
+/* KIRIM DATA KE GOOGLE SHEET */
+
+fetch("https://script.google.com/macros/s/AKfycbyvNPJMxfJdITAiynujqq6PjppZeQcSFd-kUy8-iR02HJhqYocAl0x3J7dIQcAbQdip/exec",{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+nama:nama,
+kategori:kategori,
+pesan:kalimat,
+waktu:new Date().toLocaleString()
+
+})
+})
+
+document.getElementById("namaCard").innerText="Untuk "+nama
+document.getElementById("kataCard").innerText=kalimat
+
+document.getElementById("cardMotivasi").style.backgroundImage=
+"url("+backgroundTema[kategori]+")"
+
+nextPage(3)
+
+sudahGenerate=true
+
+}
+
+/* DOWNLOAD GAMBAR */
+
+function downloadGambar(){
+
+let kartu=document.getElementById("cardMotivasi")
+
+html2canvas(kartu).then(function(canvas){
+
+let link=document.createElement("a")
+
+link.download="pesan-semesta.png"
+link.href=canvas.toDataURL()
+
+link.click()
+
+})
 
 }
 
