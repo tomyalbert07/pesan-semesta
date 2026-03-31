@@ -1,338 +1,836 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Semesta ✨</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Modern Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<title>Pesan Semesta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@500;700&display=swap');
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
 
-<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-body{
-margin:0;
-font-family:Segoe UI;
-background:linear-gradient(135deg,#141e30,#243b55);
-color:white;
-text-align:center;
-overflow:hidden;
-}
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
 
-#particles-js{
-position:absolute;
-width:100%;
-height:100%;
-z-index:0;
-}
+        .gradient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 1;
+            animation: float 20s infinite ease-in-out;
+        }
 
-.container{
-position:relative;
-z-index:2;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            top: -100px;
+            left: -100px;
+        }
 
-.page{
-display:none;
-animation:fadeUp 1s;
-}
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -10s;
+        }
 
-.cover{
-display:block;
-}
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            top: 50%;
+            left: 50%;
+            animation-delay: -5s;
+        }
 
-.card{
-background:rgba(255,255,255,0.1);
-padding:30px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-width:90%;
-max-width:380px;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
-}
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
 
-select,input{
-padding:12px;
-border:none;
-border-radius:10px;
-width:100%;
-margin-top:10px;
-}
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-button{
-margin-top:15px;
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:#ffd166;
-font-weight:bold;
-cursor:pointer;
-}
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 500px;
+        }
 
-.cardMotivasi{
+        .page.active {
+            display: block;
+        }
 
-width:350px;
-max-width:90%;
-padding:40px;
-border-radius:20px;
-color:white;
-margin:auto;
-font-size:22px;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
+        /* Page 1 - Cover */
+        .cover-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
 
-background-size:cover;
-background-position:center;
+        .logo-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
 
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.8)); }
+        }
 
-.overlay{
-background:rgba(0,0,0,0.45);
-padding:30px;
-border-radius:20px;
-}
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
-}
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
 
-</style>
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
 
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        select option {
+            background: #1e293b;
+            color: white;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Message Card */
+        .message-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .recipient-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #c7d2fe;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .message-text {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .quote-icon {
+            font-size: 40px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s linear forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(20) rotate(180deg);
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: #10b981;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            .message-text { font-size: 1.8rem; }
+            .glass-card { padding: 30px 25px; }
+            .message-card { padding: 40px 25px; }
+        }
+    </style>
 </head>
-
 <body>
-
-<div id="particles-js"></div>
-
-<div class="container">
-
-<div id="page1" class="page cover">
-
-<h1>✨ Pesan Semesta ✨</h1>
-<p>Ada pesan untukmu hari ini</p>
-
-<button onclick="nextPage(2)">Buka Pesan</button>
-
-</div>
-
-<div id="page2" class="page">
-
-<div class="card">
-
-<h2>Pilih Tema Pesan</h2>
-
-<select id="kategori">
-<option>Loading...</option>
-</select>
-
-<input id="nama" placeholder="Masukkan nama kamu">
-
-<button onclick="generate()">Lihat Pesan</button>
-
-</div>
-
-</div>
-
-<div id="page3" class="page">
-
-<div id="cardMotivasi" class="cardMotivasi">
-
-<div class="overlay">
-
-<h2 id="namaCard"></h2>
-<p id="kataCard"></p>
-
-</div>
-
-</div>
-
-<button onclick="downloadGambar()">📸 Simpan Gambar</button>
-
-</div>
-
-</div>
-
-<script>
-
-/* PARTICLES */
-
-particlesJS("particles-js",{
-particles:{
-number:{value:60},
-size:{value:3},
-move:{speed:1},
-line_linked:{enable:true}
-}
-})
-
-/* DATABASE */
-
-let bankMotivasi=[]
-
-async function loadMotivasi(){
-
-let res=await fetch("https://script.google.com/macros/s/AKfycbzTDcehZKW3ZOyM2uFGFCCs9wNgQ2zroW7GlkTci2WyMZgul2uA0EQQn4KUAKFzcvUu/exec")
-bankMotivasi=await res.json()
-
-let kategoriUnik=[...new Set(bankMotivasi.map(m=>m.kategori))]
-
-let select=document.getElementById("kategori")
-
-select.innerHTML=""
-
-kategoriUnik.forEach(k=>{
-
-let opt=document.createElement("option")
-opt.value=k
-opt.textContent=k
-
-select.appendChild(opt)
-
-})
-
-}
-
-loadMotivasi()
-
-let sudahGenerate=false
-
-/* BACKGROUND */
-
-const backgroundTema={
-
-semangat:"https://source.unsplash.com/800x600/?sunrise",
-hidup:"https://source.unsplash.com/800x600/?nature",
-sukses:"https://source.unsplash.com/800x600/?success"
-
-}
-
-/* TEMPLATE */
-
-const template=[
-
-"{nama}, semesta ingin kamu tahu bahwa {pesan}",
-"Hari ini {nama}, ingatlah bahwa {pesan}",
-"Pesan kecil untukmu {nama}: {pesan}",
-"{nama}, mungkin hari ini berat, tapi {pesan}"
-
-]
-
-/* NAVIGATION */
-
-function nextPage(num){
-
-document.querySelectorAll(".page").forEach(p=>p.style.display="none")
-document.getElementById("page"+num).style.display="block"
-
-}
-
-/* GENERATE */
-
-function generate(){
-
-if(sudahGenerate){
-
-alert("Pesan sudah dibuka. Refresh halaman untuk mencoba lagi.")
-return
-
-}
-
-let nama=document.getElementById("nama").value
-let kategori=document.getElementById("kategori").value
-
-if(nama==""){
-
-alert("Masukkan nama dulu")
-return
-
-}
-
-let list = bankMotivasi.filter(m => m.kategori == kategori)
-
-if(list.length==0){
-
-alert("Database motivasi kosong")
-return
-
-}
-
-let p = list[Math.floor(Math.random()*list.length)].pesan
-
-let t=template[Math.floor(Math.random()*template.length)]
-
-let kalimat=t.replace("{nama}",nama).replace("{pesan}",p)
-
-/* LOG USER */
-
-fetch("https://script.google.com/macros/s/AKfycbxxrJW_YldUE3boEUXEtg-8aHRQ9nMJTaTRu_BiS78AdJMKSLsvm6wLVti0fh1dRrF4/exec",{
-
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-nama:nama,
-kategori:kategori,
-pesan:kalimat,
-waktu:new Date().toLocaleString()
-
-})
-
-})
-
-document.getElementById("namaCard").innerText="Untuk "+nama
-document.getElementById("kataCard").innerText=kalimat
-
-if(backgroundTema[kategori]){
-
-document.getElementById("cardMotivasi").style.backgroundImage=
-"url("+backgroundTema[kategori]+")"
-
-}else{
-
-document.getElementById("cardMotivasi").style.backgroundImage=
-"url(https://source.unsplash.com/800x600/?galaxy)"
-
-}
-
-nextPage(3)
-
-sudahGenerate=true
-
-}
-
-/* DOWNLOAD */
-
-function downloadGambar(){
-
-let kartu=document.getElementById("cardMotivasi")
-
-html2canvas(kartu).then(function(canvas){
-
-let link=document.createElement("a")
-
-link.download="pesan-semesta.png"
-link.href=canvas.toDataURL()
-
-link.click()
-
-})
-
-}
-
-</script>
-
+    <!-- Background Effects -->
+    <div id="particles-js"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <div class="container">
+        <!-- Page 1: Cover -->
+        <div id="page1" class="page active">
+            <div class="cover-content">
+                <div class="logo-icon">✨</div>
+                <h1>Pesan Semesta</h1>
+                <p class="subtitle">Ada pesan spesial untukmu hari ini</p>
+                <button class="btn btn-primary" onclick="nextPage(2)">
+                    <i data-lucide="sparkles"></i>
+                    Buka Pesan
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 2: Form -->
+        <div id="page2" class="page">
+            <div class="glass-card fade-in">
+                <h2 style="font-size: 1.8rem; margin-bottom: 30px; text-align: center;">
+                    <i data-lucide="settings-2" style="vertical-align: middle; margin-right: 10px;"></i>
+                    Pesan Kustom
+                </h2>
+
+                <div class="form-group">
+                    <label>Pilih Tema</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="layout-grid" class="input-icon" style="width: 18px; height: 18px;"></i>
+                        <select id="kategori">
+                            <option value="" disabled selected>Memuat tema...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Kamu</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="user" class="input-icon" style="width: 18px; height: 18px;"></i>
+                        <input type="text" id="nama" placeholder="Masukkan nama kamu" maxlength="20">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="generate()" id="btnGenerate">
+                    <i data-lucide="wand-2"></i>
+                    Lihat Pesan
+                </button>
+
+                <button class="btn btn-secondary" onclick="nextPage(1)">
+                    <i data-lucide="arrow-left"></i>
+                    Kembali
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 3: Result -->
+        <div id="page3" class="page">
+            <div id="captureArea" class="message-card fade-in">
+                <div class="card-content">
+                    <div class="quote-icon">❝</div>
+                    <div class="recipient-name" id="namaCard">Untuk Kamu</div>
+                    <p class="message-text" id="kataCard">Memuat pesan...</p>
+                    <div class="card-footer">
+                        <i data-lucide="sparkles" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                        Dari Semesta dengan Cinta
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <button class="btn btn-primary" onclick="downloadImage()" style="width: auto; flex: 1; min-width: 150px;">
+                    <i data-lucide="download"></i>
+                    Simpan
+                </button>
+                <button class="btn btn-secondary" onclick="resetApp()" style="width: auto; flex: 1; min-width: 150px;">
+                    <i data-lucide="refresh-cw"></i>
+                    Lagi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <span id="toastMsg">Gambar berhasil disimpan!</span>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Particles Configuration - Cool floating particles
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#6366f1", "#ec4899", "#f59e0b", "#ffffff"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: { enable: true, minimum_value: 1 } },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#6366f1",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Database
+        let bankMotivasi = [];
+        let sudahGenerate = false;
+
+        // Templates for messages
+        const templates = [
+            "{nama}, semesta ingin kamu tahu bahwa {pesan}",
+            "Hari ini {nama}, ingatlah bahwa {pesan}",
+            "Pesan kecil untukmu {nama}: {pesan}",
+            "{nama}, mungkin hari ini berat, tapi {pesan}",
+            "Hey {nama}! {pesan}",
+            "{nama}, jangan lupa bahwa {pesan}"
+        ];
+
+        // Theme configurations with gradient backgrounds
+        const themeConfig = {
+            semangat: { 
+                gradient: "linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(239, 68, 68, 0.4))",
+                icon: "sun"
+            },
+            hidup: { 
+                gradient: "linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(59, 130, 246, 0.4))",
+                icon: "leaf"
+            },
+            sukses: { 
+                gradient: "linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4))",
+                icon: "trophy"
+            },
+            cinta: {
+                gradient: "linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(244, 63, 94, 0.4))",
+                icon: "heart"
+            },
+            inspirasi: {
+                gradient: "linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(168, 85, 247, 0.4))",
+                icon: "star"
+            }
+        };
+
+        // Load data from Google Apps Script
+        async function loadMotivasi() {
+            try {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbzTDcehZKW3ZOyM2uFGFCCs9wNgQ2zroW7GlkTci2WyMZgul2uA0EQQn4KUAKFzcvUu/exec");
+                bankMotivasi = await res.json();
+
+                const kategoriUnik = [...new Set(bankMotivasi.map(m => m.kategori))];
+                const select = document.getElementById("kategori");
+                select.innerHTML = '<option value="" disabled selected>Pilih tema pesan...</option>';
+
+                kategoriUnik.forEach(k => {
+                    const opt = document.createElement("option");
+                    opt.value = k;
+                    opt.textContent = k.charAt(0).toUpperCase() + k.slice(1);
+                    select.appendChild(opt);
+                });
+            } catch (error) {
+                console.error("Error loading data:", error);
+                // Fallback data
+                bankMotivasi = [
+                    { kategori: "semangat", pesan: "kamu lebih kuat dari yang kamu kira" },
+                    { kategori: "semangat", pesan: "setiap langkah kecil membawamu lebih dekat ke tujuan" },
+                    { kategori: "hidup", pesan: "nikmati setiap momen, karena hidup adalah anugerah" },
+                    { kategori: "hidup", pesan: "kebahagiaan ada di sekitarmu, tinggal kau buka mata" },
+                    { kategori: "sukses", pesan: "kesuksesan akan datang pada waktunya" },
+                    { kategori: "sukses", pesan: "kerja kerasmu akan membuahkan hasil yang manis" },
+                    { kategori: "cinta", pesan: "cintai dirimu sendiri terlebih dahulu" },
+                    { kategori: "inspirasi", pesan: "impianmu valid dan sangat mungkin terwujud" }
+                ];
+
+                const select = document.getElementById("kategori");
+                select.innerHTML = `
+                    <option value="" disabled selected>Pilih tema pesan...</option>
+                    <option value="semangat">Semangat</option>
+                    <option value="hidup">Hidup</option>
+                    <option value="sukses">Sukses</option>
+                    <option value="cinta">Cinta</option>
+                    <option value="inspirasi">Inspirasi</option>
+                `;
+            }
+        }
+
+        loadMotivasi();
+
+        // Navigation
+        function nextPage(num) {
+            gsap.to(".page.active", {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                onComplete: () => {
+                    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+                    const target = document.getElementById("page" + num);
+                    target.classList.add("active");
+                    gsap.fromTo(target, 
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                    );
+                }
+            });
+        }
+
+        // Generate message
+        async function generate() {
+            if (sudahGenerate) {
+                showToast("Pesan sudah dibuat. Coba lagi dengan klik 'Lagi'!", "info");
+                return;
+            }
+
+            const nama = document.getElementById("nama").value.trim();
+            const kategori = document.getElementById("kategori").value;
+
+            if (!nama) {
+                shakeElement(document.getElementById("nama").parentElement);
+                return;
+            }
+
+            if (!kategori) {
+                shakeElement(document.getElementById("kategori").parentElement);
+                return;
+            }
+
+            // Show loading state
+            const btn = document.getElementById("btnGenerate");
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="loading"></span> Memuat...';
+            btn.disabled = true;
+
+            // Simulate loading for effect
+            await new Promise(r => setTimeout(r, 800));
+
+            const list = bankMotivasi.filter(m => m.kategori === kategori);
+
+            if (list.length === 0) {
+                showToast("Tidak ada pesan untuk tema ini", "error");
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                lucide.createIcons();
+                return;
+            }
+
+            const randomPesan = list[Math.floor(Math.random() * list.length)].pesan;
+            const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+            const kalimat = randomTemplate.replace("{nama}", nama).replace("{pesan}", randomPesan);
+
+            // Log to Google Sheets
+            try {
+                fetch("https://script.google.com/macros/s/AKfycbxxrJW_YldUE3boEUXEtg-8aHRQ9nMJTaTRu_BiS78AdJMKSLsvm6wLVti0fh1dRrF4/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nama: nama,
+                        kategori: kategori,
+                        pesan: kalimat,
+                        waktu: new Date().toLocaleString("id-ID")
+                    })
+                });
+            } catch (e) {
+                console.log("Logging failed, continuing...");
+            }
+
+            // Update card
+            document.getElementById("namaCard").innerText = "Untuk " + nama;
+            document.getElementById("kataCard").innerText = kalimat;
+
+            // Apply theme
+            const theme = themeConfig[kategori] || themeConfig["inspirasi"];
+            const card = document.getElementById("captureArea");
+            card.style.background = theme.gradient;
+
+            // Reset button
+            btn.innerHTML = originalContent;
+            btn.disabled = false;
+            lucide.createIcons();
+
+            // Navigate
+            nextPage(3);
+            sudahGenerate = true;
+
+            // Add sparkle effect
+            createSparkles();
+        }
+
+        // Download image using html-to-image (modern alternative to html2canvas)
+        async function downloadImage() {
+            const card = document.getElementById("captureArea");
+
+            try {
+                showToast("Menyimpan gambar...", "info");
+
+                const dataUrl = await htmlToImage.toPng(card, {
+                    quality: 1,
+                    pixelRatio: 2,
+                    backgroundColor: null
+                });
+
+                const link = document.createElement("a");
+                link.download = `pesan-semesta-${Date.now()}.png`;
+                link.href = dataUrl;
+                link.click();
+
+                showToast("Gambar berhasil disimpan! ✨", "success");
+            } catch (error) {
+                console.error("Error:", error);
+                showToast("Gagal menyimpan gambar", "error");
+            }
+        }
+
+        // Reset app
+        function resetApp() {
+            sudahGenerate = false;
+            document.getElementById("nama").value = "";
+            document.getElementById("kategori").value = "";
+            nextPage(2);
+        }
+
+        // UI Effects
+        function shakeElement(element) {
+            gsap.to(element, {
+                x: [-10, 10, -10, 10, 0],
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toastMsg");
+            const toastIcon = toast.querySelector(".toast-icon");
+
+            toastMsg.textContent = message;
+
+            if (type === "error") {
+                toastIcon.setAttribute("data-lucide", "x-circle");
+                toastIcon.style.color = "#ef4444";
+            } else if (type === "info") {
+                toastIcon.setAttribute("data-lucide", "info");
+                toastIcon.style.color = "#3b82f6";
+            } else {
+                toastIcon.setAttribute("data-lucide", "check-circle");
+                toastIcon.style.color = "#10b981";
+            }
+
+            lucide.createIcons();
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        function createSparkles() {
+            const card = document.getElementById("captureArea");
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement("div");
+                    sparkle.className = "sparkle";
+                    sparkle.style.left = Math.random() * 100 + "%";
+                    sparkle.style.top = Math.random() * 100 + "%";
+                    sparkle.style.animationDelay = Math.random() * 0.5 + "s";
+                    card.appendChild(sparkle);
+
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 50);
+            }
+        }
+
+        // Enter key support
+        document.getElementById("nama").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") generate();
+        });
+
+        // Add mouse move parallax effect
+        document.addEventListener("mousemove", (e) => {
+            const orbs = document.querySelectorAll(".gradient-orb");
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                gsap.to(orb, {
+                    x: (x - 0.5) * speed,
+                    y: (y - 0.5) * speed,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+        });
+    </script>
 </body>
 </html>
