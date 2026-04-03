@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesan Semesta ✨</title>
+    <title>Renungan Jumat Agung ✝️</title>
 
     <!-- Modern Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
 
         * {
             margin: 0;
@@ -21,16 +21,17 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --secondary: #ec4899;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-            --glass: rgba(255, 255, 255, 0.1);
+            --primary: #4c1d95;
+            --secondary: #1e1b4b;
+            --accent: #d4af37;
+            --gold: #fbbf24;
+            --dark: #0f0f1a;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1e1b4b 50%, #312e81 100%);
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
@@ -47,42 +48,43 @@
         .gradient-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(100px);
+            opacity: 0.3;
             z-index: 1;
-            animation: float 20s infinite ease-in-out;
+            animation: float 25s infinite ease-in-out;
         }
 
         .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            top: -100px;
-            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #4c1d95, transparent);
+            top: -150px;
+            left: -150px;
         }
 
         .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #ec4899, #f43f5e);
-            bottom: -50px;
-            right: -50px;
-            animation-delay: -10s;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #1e1b4b, transparent);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -12s;
         }
 
         .orb-3 {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #d4af37, transparent);
             top: 50%;
             left: 50%;
-            animation-delay: -5s;
+            animation-delay: -8s;
+            opacity: 0.15;
         }
 
         @keyframes float {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
+            33% { transform: translate(20px, -20px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
         }
 
         .container {
@@ -99,7 +101,7 @@
         .page {
             display: none;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         .page.active {
@@ -112,59 +114,66 @@
             animation: fadeInUp 1s ease-out;
         }
 
-        .logo-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
+        .cross-icon {
+            font-size: 70px;
+            margin-bottom: 25px;
             display: inline-block;
-            animation: pulse 2s infinite;
+            color: #d4af37;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+            animation: glow 3s infinite alternate;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.8)); }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6)); }
         }
 
         h1 {
-            font-size: 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff, #c7d2fe);
+            background: linear-gradient(135deg, #fff, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 15px;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
+            font-size: 1.1rem;
+            color: #a5b4fc;
             margin-bottom: 40px;
             font-weight: 300;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
         }
 
         /* Glass Card */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 24px;
             padding: 40px;
             box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         /* Form Elements */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         label {
             display: block;
             font-size: 0.9rem;
-            color: #cbd5e1;
-            margin-bottom: 10px;
+            color: #d4af37;
+            margin-bottom: 12px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .input-wrapper {
@@ -173,61 +182,63 @@
 
         .input-icon {
             position: absolute;
-            left: 15px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #64748b;
+            color: #d4af37;
         }
 
-        select, input {
+        input {
             width: 100%;
-            padding: 15px 15px 15px 45px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 18px 18px 50px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
             border-radius: 12px;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 15, 26, 0.6);
             color: white;
-            font-size: 1rem;
-            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
         }
 
-        select:focus, input:focus {
+        input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
         }
 
-        select option {
-            background: #1e293b;
-            color: white;
+        input::placeholder {
+            color: #64748b;
         }
 
         /* Buttons */
         .btn {
             width: 100%;
-            padding: 16px 32px;
+            padding: 18px 32px;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Cinzel', serif;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            background: linear-gradient(135deg, #4c1d95, #6d28d9);
             color: white;
-            box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px -5px rgba(76, 29, 149, 0.5);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 20px 40px -5px rgba(76, 29, 149, 0.6);
+            border-color: rgba(212, 175, 55, 0.5);
         }
 
         .btn-primary:active {
@@ -235,29 +246,30 @@
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.3);
             margin-top: 15px;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.5);
         }
 
-        /* Message Card */
+        /* Message Card - Jumat Agung Style */
         .message-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.4), rgba(30, 27, 75, 0.6));
             border-radius: 24px;
             padding: 50px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            min-height: 400px;
+                0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            min-height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -267,54 +279,102 @@
         .message-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
-            animation: moveGrid 20s linear infinite;
-        }
-
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(20px, 20px); }
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(76, 29, 149, 0.2) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .card-content {
             position: relative;
             z-index: 1;
+            width: 100%;
+        }
+
+        .cross-decoration {
+            font-size: 50px;
+            color: #d4af37;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
         .recipient-name {
-            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #c7d2fe;
-            margin-bottom: 20px;
+            color: #d4af37;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 3px;
         }
 
-        .message-text {
-            font-family: 'Caveat', cursive;
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.4;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        .reminder-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 3px solid #d4af37;
         }
 
-        .quote-icon {
-            font-size: 40px;
-            opacity: 0.5;
-            margin-bottom: 20px;
+        .reminder-label {
+            font-size: 0.85rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .reminder-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #e0e7ff;
+            font-style: italic;
+        }
+
+        .verse-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .verse-label {
+            font-size: 0.8rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .verse-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .verse-reference {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #d4af37;
+            font-weight: 600;
         }
 
         .card-footer {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.9rem;
-            color: #94a3b8;
+            color: #64748b;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
         }
 
         /* Loading */
@@ -322,9 +382,9 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
+            border: 3px solid rgba(212, 175, 55, 0.3);
             border-radius: 50%;
-            border-top-color: white;
+            border-top-color: #d4af37;
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -348,39 +408,17 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Sparkle Effect */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: sparkle 1s linear forwards;
-        }
-
-        @keyframes sparkle {
-            0% {
-                opacity: 1;
-                transform: scale(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(20) rotate(180deg);
-            }
-        }
-
         /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 15, 26, 0.98);
             backdrop-filter: blur(10px);
             padding: 16px 24px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
@@ -396,15 +434,25 @@
         }
 
         .toast-icon {
-            color: #10b981;
+            color: #d4af37;
         }
 
         /* Responsive */
         @media (max-width: 480px) {
-            h1 { font-size: 2.2rem; }
-            .message-text { font-size: 1.8rem; }
+            h1 { font-size: 2rem; }
+            .message-card { padding: 35px 25px; min-height: 450px; }
+            .reminder-text { font-size: 1.4rem; }
+            .verse-text { font-size: 1.2rem; }
             .glass-card { padding: 30px 25px; }
-            .message-card { padding: 40px 25px; }
+            .cross-icon { font-size: 55px; }
+        }
+
+        /* Decorative elements */
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -419,12 +467,13 @@
         <!-- Page 1: Cover -->
         <div id="page1" class="page active">
             <div class="cover-content">
-                <div class="logo-icon">✨</div>
-                <h1>Pesan Semesta</h1>
-                <p class="subtitle">Ada pesan spesial untukmu hari ini</p>
+                <div class="cross-icon">✝️</div>
+                <h1>Renungan Jumat Agung</h1>
+                <div class="decorative-line"></div>
+                <p class="subtitle">Mari merenungkan pengorbanan-Nya yang menebus dosa-dosa kita</p>
                 <button class="btn btn-primary" onclick="nextPage(2)">
-                    <i data-lucide="sparkles"></i>
-                    Buka Pesan
+                    <i data-lucide="book-open"></i>
+                    Buka Renungan
                 </button>
             </div>
         </div>
@@ -432,32 +481,22 @@
         <!-- Page 2: Form -->
         <div id="page2" class="page">
             <div class="glass-card fade-in">
-                <h2 style="font-size: 1.8rem; margin-bottom: 30px; text-align: center;">
-                    <i data-lucide="settings-2" style="vertical-align: middle; margin-right: 10px;"></i>
-                    Pesan Kustom
+                <h2 style="font-family: 'Cinzel', serif; font-size: 1.6rem; margin-bottom: 30px; text-align: center; color: #d4af37;">
+                    <i data-lucide="user" style="vertical-align: middle; margin-right: 10px; width: 20px; height: 20px;"></i>
+                    Renungan Pribadi
                 </h2>
-
-                <div class="form-group">
-                    <label>Pilih Tema</label>
-                    <div class="input-wrapper">
-                        <i data-lucide="layout-grid" class="input-icon" style="width: 18px; height: 18px;"></i>
-                        <select id="kategori">
-                            <option value="" disabled selected>Memuat tema...</option>
-                        </select>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label>Nama Kamu</label>
                     <div class="input-wrapper">
-                        <i data-lucide="user" class="input-icon" style="width: 18px; height: 18px;"></i>
-                        <input type="text" id="nama" placeholder="Masukkan nama kamu" maxlength="20">
+                        <i data-lucide="user" class="input-icon" style="width: 20px; height: 20px;"></i>
+                        <input type="text" id="nama" placeholder="Masukkan nama untuk renungan pribadi..." maxlength="25">
                     </div>
                 </div>
 
                 <button class="btn btn-primary" onclick="generate()" id="btnGenerate">
-                    <i data-lucide="wand-2"></i>
-                    Lihat Pesan
+                    <i data-lucide="cross"></i>
+                    Lihat Renungan
                 </button>
 
                 <button class="btn btn-secondary" onclick="nextPage(1)">
@@ -471,12 +510,23 @@
         <div id="page3" class="page">
             <div id="captureArea" class="message-card fade-in">
                 <div class="card-content">
-                    <div class="quote-icon">❝</div>
+                    <div class="cross-decoration">✝️</div>
                     <div class="recipient-name" id="namaCard">Untuk Kamu</div>
-                    <p class="message-text" id="kataCard">Memuat pesan...</p>
+                    
+                    <div class="reminder-section">
+                        <div class="reminder-label">Pengingat Dosa</div>
+                        <p class="reminder-text" id="reminderCard">Memuat renungan...</p>
+                    </div>
+
+                    <div class="verse-section">
+                        <div class="verse-label">Firman Tuhan</div>
+                        <p class="verse-text" id="verseCard">Memuat ayat...</p>
+                        <p class="verse-reference" id="verseRef">...</p>
+                    </div>
+
                     <div class="card-footer">
-                        <i data-lucide="sparkles" style="width: 14px; height: 14px; vertical-align: middle;"></i>
-                        Dari Semesta dengan Cinta
+                        <i data-lucide="cross" style="width: 14px; height: 14px; vertical-align: middle; color: #d4af37;"></i>
+                        Jumat Agung — Pengorbanan yang Menebus
                     </div>
                 </div>
             </div>
@@ -488,7 +538,7 @@
                 </button>
                 <button class="btn btn-secondary" onclick="resetApp()" style="width: auto; flex: 1; min-width: 150px;">
                     <i data-lucide="refresh-cw"></i>
-                    Lagi
+                    Renung Lagi
                 </button>
             </div>
         </div>
@@ -504,24 +554,24 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Particles Configuration - Cool floating particles
+        // Particles Configuration - Subtle floating particles
         particlesJS("particles-js", {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: ["#6366f1", "#ec4899", "#f59e0b", "#ffffff"] },
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: ["#d4af37", "#4c1d95", "#ffffff"] },
                 shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: { enable: true, minimum_value: 1 } },
+                opacity: { value: 0.3, random: true },
+                size: { value: 2, random: { enable: true, minimum_value: 1 } },
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: "#6366f1",
-                    opacity: 0.2,
+                    color: "#4c1d95",
+                    opacity: 0.1,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1.5,
+                    speed: 0.8,
                     direction: "none",
                     random: true,
                     straight: false,
@@ -537,94 +587,78 @@
                     resize: true
                 },
                 modes: {
-                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
-                    push: { particles_nb: 4 }
+                    grab: { distance: 140, line_linked: { opacity: 0.2 } },
+                    push: { particles_nb: 3 }
                 }
             },
             retina_detect: true
         });
 
-        // Database
-        let bankMotivasi = [];
-        let sudahGenerate = false;
-
-        // Templates for messages
-        const templates = [
-            "{nama}, semesta ingin kamu tahu bahwa {pesan}",
-            "Hari ini {nama}, ingatlah bahwa {pesan}",
-            "Pesan kecil untukmu {nama}: {pesan}",
-            "{nama}, mungkin hari ini berat, tapi {pesan}",
-            "Hey {nama}! {pesan}",
-            "{nama}, jangan lupa bahwa {pesan}"
+        // Database - Jumat Agung Reminders & Bible Verses
+        // User can customize this array with their own content
+        let bankRenungan = [
+            {
+                reminder: "Dosa-dosamu telah ditanggung oleh Dia di kayu salib. Setiap kali kamu jatuh, ingatlah bahwa pengorbanan-Nya sudah cukup untuk menebusmu.",
+                verse: "Ia sendiri telah memikul dosa kita di dalam tubuh-Nya di kayu salib, supaya kita, yang telah mati terhadap dosa, hidup untuk kebenaran. Oleh bilur-bilur-Nya kamu telah sembuh.",
+                reference: "1 Petrus 2:24"
+            },
+            {
+                reminder: "Kasih Allah begitu besar hingga Ia rela mengaruniakan Anak-Nya yang tunggal. Jangan sia-siakan pengorbanan ini dengan terus hidup dalam dosa.",
+                verse: "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal.",
+                reference: "Yohanes 3:16"
+            },
+            {
+                reminder: "Yesus mati untukmu ketika kamu masih berdosa. Jangan biarkan dosa lama menguasaimu lagi—kamu sudah dibebaskan.",
+                verse: "Tetapi Allah menyatakan kasih-Nya kepada kita, bahwa ketika kita masih menjadi pendosa, Kristus mati bagi kita.",
+                reference: "Roma 5:8"
+            },
+            {
+                reminder: "Penyakitmu, kesengsaraanmu, dan dosa-dosamu telah ditanggung-Nya. Bersyukurlah atas luka-luka yang menyembuhkanmu.",
+                verse: "Sesungguhnya, penyakit kitalah yang ditanggungnya, dan kesengsaraan kita yang dipikulnya... dia tertikam oleh karena pemberontakan kita, dia diremukkan oleh karena kejahatan kita.",
+                reference: "Yesaya 53:4-5"
+            },
+            {
+                reminder: "Kristus menjadi kutuk karena kamu, supaya kamu menerima berkat-berkat Abraham. Jangan hidup dalam kutuk dosa lagi.",
+                verse: "Kristus telah menebus kita dari kutuk hukum Taurat dengan jalan menjadi kutuk karena kita, sebab ada tertulis: Terkutuklah orang yang digantung pada kayu salib!",
+                reference: "Galatia 3:13"
+            },
+            {
+                reminder: "Upah dosa adalah maut, tetapi kamu telah menerima karunia hidup kekal. Hargailah kematian-Nya dengan meninggalkan jalan dosa.",
+                verse: "Karena upah dosa ialah maut, tetapi karunia Allah ialah hidup yang kekal dalam Kristus Yesus, Tuhan kita.",
+                reference: "Roma 6:23"
+            },
+            {
+                reminder: "Anak Manusia datang bukan untuk dilayani, melainkan untuk melayani dan memberikan nyawa-Nya menjadi tebusan. Ikuti teladan kerendahan hati-Nya.",
+                verse: "Karena Anak Manusia juga datang bukan untuk dilayani, melainkan untuk melayani dan untuk memberikan nyawa-Nya menjadi tebusan bagi banyak orang.",
+                reference: "Markus 10:45"
+            },
+            {
+                reminder: "Kristus mati bagi kita sekali untuk dosa, yang mati bagi dosa untuk selama-lamanya. Hidupmu sekarang adalah untuk kebenaran, bukan untuk dosa.",
+                verse: "Sebab Kristus telah mati bagi kita sekali untuk dosa, yang mati bagi dosa untuk selama-lamanya, tetapi yang hidup bagi Allah.",
+                reference: "1 Petrus 3:18"
+            },
+            {
+                reminder: "Darah-Nya yang tak bercacat menyucikan hati nuranimu. Datanglah kepada-Nya dengan hati yang tulus untuk diperbarui.",
+                verse: "Betapa lebihnya darah Kristus, yang melalui Roh yang kekal telah mempersembahkan diri-Nya sendiri kepada Allah dengan tak bercacat, akan menyucikan hati nuranimu dari perbuatan-perbuatan yang sia-sia.",
+                reference: "Ibrani 9:14"
+            },
+            {
+                reminder: "Allah tidak menyayangkan Anak-Nya sendiri, tetapi menyerahkan-Nya bagi kita semua. Balaslah kasih ini dengan kesetiaan.",
+                verse: "Ia, yang tidak menyayangkan Anak-Nya sendiri, tetapi yang menyerahkan-Nya bagi kita semua, bagaimanakah mungkin Ia tidak mengaruniakan segala sesuatu kepada kita bersama-sama dengan Dia?",
+                reference: "Roma 8:32"
+            }
         ];
 
-        // Theme configurations with gradient backgrounds
-        const themeConfig = {
-            semangat: { 
-                gradient: "linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(239, 68, 68, 0.4))",
-                icon: "sun"
-            },
-            hidup: { 
-                gradient: "linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(59, 130, 246, 0.4))",
-                icon: "leaf"
-            },
-            sukses: { 
-                gradient: "linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4))",
-                icon: "trophy"
-            },
-            cinta: {
-                gradient: "linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(244, 63, 94, 0.4))",
-                icon: "heart"
-            },
-            inspirasi: {
-                gradient: "linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(168, 85, 247, 0.4))",
-                icon: "star"
-            }
-        };
+        let sudahGenerate = false;
 
-        // Load data from Google Apps Script
-        async function loadMotivasi() {
-            try {
-                const res = await fetch("https://script.google.com/macros/s/AKfycbzTDcehZKW3ZOyM2uFGFCCs9wNgQ2zroW7GlkTci2WyMZgul2uA0EQQn4KUAKFzcvUu/exec");
-                bankMotivasi = await res.json();
-
-                const kategoriUnik = [...new Set(bankMotivasi.map(m => m.kategori))];
-                const select = document.getElementById("kategori");
-                select.innerHTML = '<option value="" disabled selected>Pilih tema pesan...</option>';
-
-                kategoriUnik.forEach(k => {
-                    const opt = document.createElement("option");
-                    opt.value = k;
-                    opt.textContent = k.charAt(0).toUpperCase() + k.slice(1);
-                    select.appendChild(opt);
-                });
-            } catch (error) {
-                console.error("Error loading data:", error);
-                // Fallback data
-                bankMotivasi = [
-                    { kategori: "semangat", pesan: "kamu lebih kuat dari yang kamu kira" },
-                    { kategori: "semangat", pesan: "setiap langkah kecil membawamu lebih dekat ke tujuan" },
-                    { kategori: "hidup", pesan: "nikmati setiap momen, karena hidup adalah anugerah" },
-                    { kategori: "hidup", pesan: "kebahagiaan ada di sekitarmu, tinggal kau buka mata" },
-                    { kategori: "sukses", pesan: "kesuksesan akan datang pada waktunya" },
-                    { kategori: "sukses", pesan: "kerja kerasmu akan membuahkan hasil yang manis" },
-                    { kategori: "cinta", pesan: "cintai dirimu sendiri terlebih dahulu" },
-                    { kategori: "inspirasi", pesan: "impianmu valid dan sangat mungkin terwujud" }
-                ];
-
-                const select = document.getElementById("kategori");
-                select.innerHTML = `
-                    <option value="" disabled selected>Pilih tema pesan...</option>
-                    <option value="semangat">Semangat</option>
-                    <option value="hidup">Hidup</option>
-                    <option value="sukses">Sukses</option>
-                    <option value="cinta">Cinta</option>
-                    <option value="inspirasi">Inspirasi</option>
-                `;
-            }
-        }
-
-        loadMotivasi();
+        // Templates for personalization
+        const templates = [
+            "{nama}, {reminder}",
+            "Hai {nama}, {reminder}",
+            "{nama}, renungkanlah: {reminder}",
+            "Untukmu {nama}: {reminder}",
+            "{nama}, pada hari yang kudus ini, {reminder}"
+        ];
 
         // Navigation
         function nextPage(num) {
@@ -647,20 +681,14 @@
         // Generate message
         async function generate() {
             if (sudahGenerate) {
-                showToast("Pesan sudah dibuat. Coba lagi dengan klik 'Lagi'!", "info");
+                showToast("Renungan sudah dibuat. Klik 'Renung Lagi' untuk renungan baru!", "info");
                 return;
             }
 
             const nama = document.getElementById("nama").value.trim();
-            const kategori = document.getElementById("kategori").value;
 
             if (!nama) {
                 shakeElement(document.getElementById("nama").parentElement);
-                return;
-            }
-
-            if (!kategori) {
-                shakeElement(document.getElementById("kategori").parentElement);
                 return;
             }
 
@@ -671,47 +699,22 @@
             btn.disabled = true;
 
             // Simulate loading for effect
-            await new Promise(r => setTimeout(r, 800));
+            await new Promise(r => setTimeout(r, 1000));
 
-            const list = bankMotivasi.filter(m => m.kategori === kategori);
-
-            if (list.length === 0) {
-                showToast("Tidak ada pesan untuk tema ini", "error");
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-                lucide.createIcons();
-                return;
-            }
-
-            const randomPesan = list[Math.floor(Math.random() * list.length)].pesan;
+            // Select random renungan
+            const randomRenungan = bankRenungan[Math.floor(Math.random() * bankRenungan.length)];
             const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
-            const kalimat = randomTemplate.replace("{nama}", nama).replace("{pesan}", randomPesan);
-
-            // Log to Google Sheets
-            try {
-                fetch("https://script.google.com/macros/s/AKfycbxxrJW_YldUE3boEUXEtg-8aHRQ9nMJTaTRu_BiS78AdJMKSLsvm6wLVti0fh1dRrF4/exec", {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        nama: nama,
-                        kategori: kategori,
-                        pesan: kalimat,
-                        waktu: new Date().toLocaleString("id-ID")
-                    })
-                });
-            } catch (e) {
-                console.log("Logging failed, continuing...");
-            }
+            
+            // Personalize reminder text
+            const personalizedReminder = randomTemplate
+                .replace("{nama}", nama)
+                .replace("{reminder}", randomRenungan.reminder);
 
             // Update card
             document.getElementById("namaCard").innerText = "Untuk " + nama;
-            document.getElementById("kataCard").innerText = kalimat;
-
-            // Apply theme
-            const theme = themeConfig[kategori] || themeConfig["inspirasi"];
-            const card = document.getElementById("captureArea");
-            card.style.background = theme.gradient;
+            document.getElementById("reminderCard").innerText = personalizedReminder;
+            document.getElementById("verseCard").innerText = '"' + randomRenungan.verse + '"';
+            document.getElementById("verseRef").innerText = "— " + randomRenungan.reference;
 
             // Reset button
             btn.innerHTML = originalContent;
@@ -722,16 +725,31 @@
             nextPage(3);
             sudahGenerate = true;
 
-            // Add sparkle effect
-            createSparkles();
+            // Log activity (optional - can be disabled if no backend)
+            try {
+                fetch("https://script.google.com/macros/s/AKfycbxxrJW_YldUE3boEUXEtg-8aHRQ9nMJTaTRu_BiS78AdJMKSLsvm6wLVti0fh1dRrF4/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nama: nama,
+                        reminder: randomRenungan.reminder,
+                        ayat: randomRenungan.verse,
+                        referensi: randomRenungan.reference,
+                        waktu: new Date().toLocaleString("id-ID")
+                    })
+                });
+            } catch (e) {
+                console.log("Logging failed, continuing...");
+            }
         }
 
-        // Download image using html-to-image (modern alternative to html2canvas)
+        // Download image using html-to-image
         async function downloadImage() {
             const card = document.getElementById("captureArea");
 
             try {
-                showToast("Menyimpan gambar...", "info");
+                showToast("Menyimpan renungan...", "info");
 
                 const dataUrl = await htmlToImage.toPng(card, {
                     quality: 1,
@@ -740,11 +758,11 @@
                 });
 
                 const link = document.createElement("a");
-                link.download = `pesan-semesta-${Date.now()}.png`;
+                link.download = `renungan-jumat-agung-${Date.now()}.png`;
                 link.href = dataUrl;
                 link.click();
 
-                showToast("Gambar berhasil disimpan! ✨", "success");
+                showToast("Renungan berhasil disimpan! ✝️", "success");
             } catch (error) {
                 console.error("Error:", error);
                 showToast("Gagal menyimpan gambar", "error");
@@ -755,7 +773,6 @@
         function resetApp() {
             sudahGenerate = false;
             document.getElementById("nama").value = "";
-            document.getElementById("kategori").value = "";
             nextPage(2);
         }
 
@@ -780,10 +797,10 @@
                 toastIcon.style.color = "#ef4444";
             } else if (type === "info") {
                 toastIcon.setAttribute("data-lucide", "info");
-                toastIcon.style.color = "#3b82f6";
+                toastIcon.style.color = "#d4af37";
             } else {
                 toastIcon.setAttribute("data-lucide", "check-circle");
-                toastIcon.style.color = "#10b981";
+                toastIcon.style.color = "#d4af37";
             }
 
             lucide.createIcons();
@@ -792,22 +809,6 @@
             setTimeout(() => {
                 toast.classList.remove("show");
             }, 3000);
-        }
-
-        function createSparkles() {
-            const card = document.getElementById("captureArea");
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement("div");
-                    sparkle.className = "sparkle";
-                    sparkle.style.left = Math.random() * 100 + "%";
-                    sparkle.style.top = Math.random() * 100 + "%";
-                    sparkle.style.animationDelay = Math.random() * 0.5 + "s";
-                    card.appendChild(sparkle);
-
-                    setTimeout(() => sparkle.remove(), 1000);
-                }, i * 50);
-            }
         }
 
         // Enter key support
@@ -822,7 +823,7 @@
             const y = e.clientY / window.innerHeight;
 
             orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 20;
+                const speed = (index + 1) * 15;
                 gsap.to(orb, {
                     x: (x - 0.5) * speed,
                     y: (y - 0.5) * speed,
